@@ -4,41 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Football Analyst</title>
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+    <link rel="icon" href="/icon.ico"/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap"
       rel="stylesheet"
     />
-    <!-- Markdown Parser -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <style>
       body {
         font-family: 'Inter', sans-serif;
-        background-color: #0b0f19; /* Very dark blue/black base */
+        background-color: #0b0f19;
         background-image: 
-          /* Yellow glow (Top Right) */
           radial-gradient(at 90% 10%, rgba(250, 204, 21, 0.15) 0px, transparent 50%),
-          /* Red glow (Top Left/Center) */
           radial-gradient(at 10% 20%, rgba(220, 38, 38, 0.25) 0px, transparent 50%),
-          /* Deep Purple/Blue glow (Bottom) */
           radial-gradient(at 50% 90%, rgba(88, 28, 135, 0.35) 0px, transparent 60%);
-        background-attachment: fixed; /* Keeps background static while scrolling */
+        background-attachment: fixed;
       }
       
-      /* Glassmorphism Cards */
       .glass-card {
-        background: rgba(15, 23, 42, 0.6); /* Semi-transparent dark blue */
+        background: rgba(15, 23, 42, 0.6);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
-      /* Custom Scrollbar */
       ::-webkit-scrollbar { width: 8px; }
       ::-webkit-scrollbar-track { background: #0f172a; }
       ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
@@ -54,11 +47,11 @@
       .prose h1 { font-size: 1.5rem; }
       .prose h2 { 
         font-size: 1.25rem; 
-        border-bottom: 1px solid rgba(248, 113, 113, 0.2); /* Subtle red underline */
+        border-bottom: 1px solid rgba(248, 113, 113, 0.2); 
         padding-bottom: 0.5rem; 
       }
       .prose p { margin-bottom: 1em; line-height: 1.7; color: #cbd5e1; }
-      .prose strong { color: #fbbf24; font-weight: 600; } /* Amber/Yellow bold text */
+      .prose strong { color: #fbbf24; font-weight: 600; } 
       .prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1em; color: #cbd5e1; }
     </style>
   </head>

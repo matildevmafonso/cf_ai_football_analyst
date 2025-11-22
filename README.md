@@ -1,25 +1,81 @@
-# Cloudflare Workers OpenAPI 3.1
+# AI Football Analyst
 
-This is a Cloudflare Worker with OpenAPI 3.1 using [chanfana](https://github.com/cloudflare/chanfana) and [Hono](https://github.com/honojs/hono).
+An AI-powered tactical assistant built on Cloudflare Workers that provides professional scouting reports, match predictions, and tactical breakdowns for football matches.
+This project was built as part of the Cloudflare AI App Assignment.
 
-This is an example project made to be used as a quick start into building OpenAPI compliant Workers that generates the
-`openapi.json` schema automatically from code and validates the incoming request to the defined parameters or request body.
 
-## Get started
+## Features
 
-1. Sign up for [Cloudflare Workers](https://workers.dev). The free tier is more than enough for most use cases.
-2. Clone this project and install dependencies with `npm install`
-3. Run `wrangler login` to login to your Cloudflare account in wrangler
-4. Run `wrangler deploy` to publish the API to Cloudflare Workers
+* **Tactical Analysis:** Generates deep-dive scouting reports using Llama 3.3 via Cloudflare Workers AI.
+* **Smart Predictions:** Analyzes team identities to predict match outcomes.
+* **Match History (Memory):** Saves every analysis to Cloudflare KV, creating a persistent database of past reports.
 
-## Project structure
 
-1. Your main router is defined in `src/index.ts`.
-2. Each endpoint has its own file in `src/endpoints/`.
-3. For more information read the [chanfana documentation](https://chanfana.pages.dev/) and [Hono documentation](https://hono.dev/docs).
 
-## Development
+## Tech Stack
 
-1. Run `wrangler dev` to start a local instance of the API.
-2. Open `http://localhost:8787/` in your browser to see the Swagger interface where you can try the endpoints.
-3. Changes made in the `src/` folder will automatically trigger the server to reload, you only need to refresh the Swagger interface.
+* **Runtime:** Cloudflare Workers
+* **Framework:** Hono (Lightweight web framework)
+* **AI Model:** `@cf/meta/llama-3.3-70b-instruct-fp8-fast`
+* **Database:** Cloudflare KV (Key-Value Storage)
+* **Frontend:** HTML5, Tailwind CSS, Marked.js (for Markdown rendering)
+
+
+## Setup & Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/matildevmafonso/cf_ai_football_analyst.git
+cd cf_ai_football_analyst
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Cloudflare KV
+
+To enable the "Memory" requirement, you must create a KV namespace:
+
+```bash
+npx wrangler kv:namespace create FOOTBALL_KV
+```
+
+Copy the ID output from that command and update your `wrangler.jsonc` file:
+
+```json
+"kv_namespaces": [
+  {
+    "binding": "FOOTBALL_KV",
+    "id": "<YOUR_NEW_ID_HERE>"
+  }
+]
+```
+
+---
+
+## 🏃‍♂️ How to Run
+
+### Local Development
+
+To run the worker locally on your machine:
+
+```bash
+npx wrangler dev
+```
+
+Open your browser to `http://localhost:8787` (or the URL provided in the terminal).
+
+### 🚀 Deploy to Production
+
+To publish your worker to the Cloudflare global network:
+
+```bash
+npx wrangler deploy
+```
+
+The command will output your live URL (e.g., `https://cf_ai_football_analyst.your-subdomain.workers.dev`).
+
