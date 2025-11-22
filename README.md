@@ -41,7 +41,7 @@ npm install
 To enable the "Memory" requirement, you must create a KV namespace:
 
 ```bash
-npx wrangler kv:namespace create FOOTBALL_KV
+npx wrangler kv namespace create FOOTBALL_KV
 ```
 
 Copy the ID output from that command and update your `wrangler.jsonc` file:
@@ -67,7 +67,7 @@ To run the worker locally on your machine:
 npx wrangler dev
 ```
 
-Open your browser to `http://localhost:8787` (or the URL provided in the terminal).
+Open your browser to the URL provided in the terminal.
 
 ### 🚀 Deploy to Production
 
