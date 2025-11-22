@@ -57,7 +57,7 @@ Copy the ID output from that command and update your `wrangler.jsonc` file:
 
 ---
 
-## 🏃‍♂️ How to Run
+## How to Run
 
 ### Local Development
 
@@ -69,7 +69,7 @@ npx wrangler dev
 
 Open your browser to the URL provided in the terminal.
 
-### 🚀 Deploy to Production
+### Deploy to Production
 
 To publish your worker to the Cloudflare global network:
 
