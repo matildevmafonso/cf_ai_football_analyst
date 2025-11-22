@@ -21,16 +21,17 @@ app.post('/api/analyze', async (c) => {
     Provide:
     1. Scouting report.
     2. 3 Tactical keys.
-    3. Prediction.
+    3. Prediction if the match hasnt happened yet, reflection on the result if it has.
   `;
 
-  // Using Llama 3.3 as requested in the assignment
-  // If this specific ID fails, fallback to "@cf/meta/llama-3.1-8b-instruct"
   const response = await ai.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast' as any, {
-    messages: [{ role: 'user', content: prompt }],
+    messages: [
+      { role: 'system', content: 'You are a helpful football analyst. Do not hallucinate players who have left the clubs. If unsure about a player, focus on the manager\'s tactical system instead.' },
+      { role: 'user', content: prompt }
+    ],
+    max_tokens: 4096
   }) as any;
 
-  // Save state to KV (Satisfies "Memory" requirement)
   const key = `${Date.now()}-${homeTeam}-vs-${awayTeam}`;
   await c.env.FOOTBALL_KV.put(key, JSON.stringify({ 
     input: body, 
