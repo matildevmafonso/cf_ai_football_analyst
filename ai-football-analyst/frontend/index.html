@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Football Analyst</title>
+    <style>
+      body { background: #111; color: #eee; font-family: sans-serif; display: flex; justify-content: center; padding: 2rem; }
+      .card { max-width: 600px; width: 100%; }
+      input, textarea, button { width: 100%; margin-bottom: 1rem; padding: 10px; box-sizing: border-box; }
+      button { background: #4CAF50; color: white; border: none; cursor: pointer; }
+      pre { white-space: pre-wrap; background: #222; padding: 1rem; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>AI Analyst ⚽️</h1>
+      <form id="f">
+        <input name="homeTeam" placeholder="Home Team" required />
+        <input name="awayTeam" placeholder="Away Team" required />
+        <button type="submit">Analyze</button>
+      </form>
+      <pre id="r" hidden></pre>
+    </div>
+    <script>
+      document.getElementById('f').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        document.getElementById('r').hidden = false;
+        document.getElementById('r').textContent = "Analyzing...";
+        const res = await fetch('/api/analyze', {
+          method: 'POST',
+          body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
+        });
+        const data = await res.json();
+        document.getElementById('r').textContent = data.analysis;
+      });
+    </script>
+  </body>
+</html>
